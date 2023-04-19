@@ -1,4 +1,9 @@
-angular.module("todoApp", []).controller("TodoListController", function () {
+const TodoList = {
+  controller,
+  templateUrl: "./todo.template.html",
+};
+
+function controller() {
   var todoList = this;
   todoList.todos = [
     { text: "learn AngularJS", done: true },
@@ -25,4 +30,6 @@ angular.module("todoApp", []).controller("TodoListController", function () {
       if (!todo.done) todoList.todos.push(todo);
     });
   };
-});
+}
+
+angular.module("todoApp", []).component("todoList", TodoList);
