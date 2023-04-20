@@ -1,14 +1,21 @@
+class Todo {
+  constructor(text, done = false) {
+    this.text = text;
+    this.done = done;
+  }
+}
+
 const TodoList = {
   controller: class Controller {
     constructor() {
       this.todos = [
-        { text: "learn AngularJS", done: true },
-        { text: "build an AngularJS app", done: false },
+        new Todo("learn AngularJS", true),
+        new Todo("build an AngularJS app"),
       ];
     }
 
     addTodo() {
-      this.todos.push({ text: this.todoText, done: false });
+      this.todos.push(new Todo(this.todoText));
       this.todoText = "";
     }
 
