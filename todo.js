@@ -13,22 +13,28 @@ const TodoList = {
     }
 
     remaining() {
-      var count = 0;
-      this.todos.forEach((todo) => {
-        count += todo.done ? 0 : 1;
-      });
-      return count;
+      return getRemaining(this.todos);
     }
 
     archive() {
       var oldTodos = this.todos;
       this.todos = [];
       oldTodos.forEach((todo) => {
-        if (!todo.done) this.todos.push(todo);
+        if (!todo.done) {
+          this.todos.push(todo);
+        }
       });
     }
   },
   templateUrl: "./todo.template.html",
 };
+
+function getRemaining(todos) {
+  var count = 0;
+  todos.forEach((todo) => {
+    count += todo.done ? 0 : 1;
+  });
+  return count;
+}
 
 angular.module("todoApp", []).component("todoList", TodoList);
