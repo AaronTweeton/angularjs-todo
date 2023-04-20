@@ -17,13 +17,7 @@ const TodoList = {
     }
 
     archive() {
-      var oldTodos = this.todos;
-      this.todos = [];
-      oldTodos.forEach((todo) => {
-        if (!todo.done) {
-          this.todos.push(todo);
-        }
-      });
+      this.todos = filteredTodos(this.todos);
     }
   },
   templateUrl: "./todo.template.html",
@@ -35,6 +29,17 @@ function getRemaining(todos) {
     count += todo.done ? 0 : 1;
   });
   return count;
+}
+
+function filteredTodos(todos) {
+  var oldTodos = todos;
+  todos = [];
+  oldTodos.forEach((todo) => {
+    if (!todo.done) {
+      todos.push(todo);
+    }
+  });
+  return todos;
 }
 
 angular.module("todoApp", []).component("todoList", TodoList);
