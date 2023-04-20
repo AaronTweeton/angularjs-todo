@@ -20,14 +20,18 @@ const TodoList = {
     }
 
     remaining() {
-      return this.todos.filter((todo) => !todo.done).length;
+      return incompleteTodos(this.todos).length;
     }
 
     archive() {
-      this.todos = this.todos.filter((todo) => !todo.done);
+      this.todos = incompleteTodos(this.todos);
     }
   },
   templateUrl: "./todo.template.html",
 };
+
+function incompleteTodos(todos) {
+  return todos.filter((todo) => !todo.done);
+}
 
 angular.module("todoApp", []).component("todoList", TodoList);
