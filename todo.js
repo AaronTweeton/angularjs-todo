@@ -24,21 +24,10 @@ const TodoList = {
     }
 
     archive() {
-      this.todos = filteredTodos(this.todos);
+      this.todos = this.todos.filter((todo) => !todo.done);
     }
   },
   templateUrl: "./todo.template.html",
 };
-
-function filteredTodos(todos) {
-  var oldTodos = todos;
-  todos = [];
-  oldTodos.forEach((todo) => {
-    if (!todo.done) {
-      todos.push(todo);
-    }
-  });
-  return todos;
-}
 
 angular.module("todoApp", []).component("todoList", TodoList);
