@@ -17,7 +17,7 @@ function controller() {
 
   todoList.remaining = function () {
     var count = 0;
-    angular.forEach(todoList.todos, function (todo) {
+    todoList.todos.forEach((todo) => {
       count += todo.done ? 0 : 1;
     });
     return count;
@@ -26,7 +26,7 @@ function controller() {
   todoList.archive = function () {
     var oldTodos = todoList.todos;
     todoList.todos = [];
-    angular.forEach(oldTodos, function (todo) {
+    oldTodos.forEach((todo) => {
       if (!todo.done) todoList.todos.push(todo);
     });
   };
