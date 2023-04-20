@@ -4,30 +4,29 @@ const TodoList = {
 };
 
 function controller() {
-  var todoList = this;
-  todoList.todos = [
+  this.todos = [
     { text: "learn AngularJS", done: true },
     { text: "build an AngularJS app", done: false },
   ];
 
-  todoList.addTodo = () => {
-    todoList.todos.push({ text: todoList.todoText, done: false });
-    todoList.todoText = "";
+  this.addTodo = () => {
+    this.todos.push({ text: this.todoText, done: false });
+    this.todoText = "";
   };
 
-  todoList.remaining = () => {
+  this.remaining = () => {
     var count = 0;
-    todoList.todos.forEach((todo) => {
+    this.todos.forEach((todo) => {
       count += todo.done ? 0 : 1;
     });
     return count;
   };
 
-  todoList.archive = () => {
-    var oldTodos = todoList.todos;
-    todoList.todos = [];
+  this.archive = () => {
+    var oldTodos = this.todos;
+    this.todos = [];
     oldTodos.forEach((todo) => {
-      if (!todo.done) todoList.todos.push(todo);
+      if (!todo.done) this.todos.push(todo);
     });
   };
 }
